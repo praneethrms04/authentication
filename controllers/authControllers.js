@@ -14,7 +14,6 @@ const signup = async (req, res) => {
     res.status(400).send({
       message: "Failed! name is not provided !",
     });
-    return;
   }
   // email is present
   const isEmail = await User.findOne({ email });
@@ -22,7 +21,6 @@ const signup = async (req, res) => {
     res.status(400).send({
       message: "Failed! Email  already exists!",
     });
-    return;
   }
 
   let hashPassword = await bcrypt.hash(password, 10);
@@ -36,6 +34,7 @@ const signup = async (req, res) => {
       const postResponse = {
         name: user.name,
         email: user.email,
+        id: user.id,
         createdAt: user.createdAt,
       };
       res.status(201).json(postResponse);
@@ -60,7 +59,6 @@ const signin = async (req, res) => {
     res.status(400).send({
       message: "Failed! Userid doesn't exist!",
     });
-    return;
   }
 
   //Checkig if the password matches
