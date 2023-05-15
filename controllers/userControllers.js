@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const userResponse = require("../utils/objectConverter");
-//@desc Get all Contacts
-//@route GET api/contacts
+//@desc Get all Users
+//@route GET api/users
 //@access private
 const getAllUseers = async (req, res) => {
   const users = await User.find({});
@@ -14,6 +14,10 @@ const getAllUseers = async (req, res) => {
     });
   }
 };
+
+//@desc Get all Users
+//@route GET api/users/:id
+//@access private
 
 const getUserById = async (req, res) => {
   const user = await User.findById(req.params.id);
